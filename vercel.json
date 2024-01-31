@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "server/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "server/api/$1.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "server/server.js"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "postgres://default:H1kXCNr4Rsjw@ep-late-shape-a4fzc0ca-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb"
+  },
+  "functions": {
+    "api/**/*.js": {
+      "memory": 512
+    }
+  }
+}

@@ -14,12 +14,16 @@ app.use(cors());
 const secretKey = "g3stor@D3sp3s@s*";
 
 const pool = new Pool({
-  user: "postgres",
-  host: "localhost",
-  database: "postgres",
-  password: "1234",
-  port: 5432,
+  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
 });
+
+// const pool = new Pool({
+//   user: "postgres",
+//   host: "localhost",
+//   database: "postgres",
+//   password: "1234",
+//   port: 5432,
+// });
 
 // Store refresh tokens securely (e.g., in a database)
 const refreshTokens = {};
