@@ -5,6 +5,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const { Pool } = require("pg");
 const crypto = require("crypto");
+require("dotenv").config();
 
 const app = express();
 const port = 3001;
@@ -14,8 +15,20 @@ app.use(cors());
 const secretKey = "g3stor@D3sp3s@s*";
 
 const pool = new Pool({
-  connectionString: process.env.POSTGRES_URL + "?sslmode=require",
+  connectionString: process.env.DATABASE_URL,
 });
+
+async function getPostgresVersion() {
+  const client = await pool.connect();
+  try {
+    const response = await client.query("SELECT version()");
+    console.log(response.rows[0]);
+  } finally {
+    client.release();
+  }
+}
+
+getPostgresVersion();
 
 // const pool = new Pool({
 //   user: "postgres",

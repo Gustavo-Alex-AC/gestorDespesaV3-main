@@ -178,3 +178,34 @@ app.post("/api/auth/refresh", async (req, res) => {
 // VALUES
 // (50, 'Alimentação', '2023-12-15', 'Lanches da fau', 'Lanche', 2),
 // (70, 'Lazer', '2023-12-05', 'Cinema com as amigas', 'Cinema', 2);
+
+// -- Create the database
+// CREATE DATABASE your_database_name;
+
+// -- Disconnect from the current database to avoid being inside a transaction
+// \c;
+
+// -- Connect to the new database
+// \c your_database_name;
+
+// -- Create the incomes table
+// CREATE TABLE incomes (
+//     id SERIAL PRIMARY KEY,
+//     amount NUMERIC NOT NULL,
+//     category VARCHAR(255),
+//     date DATE, -- Change to DATE type
+//     reference VARCHAR(255),
+//     title VARCHAR(255),
+//     userId VARCHAR(255)
+// );
+
+// -- Create the expenses table (similar to incomes)
+// CREATE TABLE expenses (
+//     id SERIAL PRIMARY KEY,
+//     amount NUMERIC NOT NULL,
+//     category VARCHAR(255),
+//     date DATE, -- Change to DATE type
+//     reference VARCHAR(255),
+//     title VARCHAR(255),
+//     userId VARCHAR(255)
+// );
