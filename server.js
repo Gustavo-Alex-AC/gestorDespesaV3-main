@@ -14,29 +14,29 @@ app.use(bodyParser.json());
 app.use(cors());
 const secretKey = "g3stor@D3sp3s@s*";
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
-
-async function getPostgresVersion() {
-  const client = await pool.connect();
-  try {
-    const response = await client.query("SELECT version()");
-    console.log(response.rows[0]);
-  } finally {
-    client.release();
-  }
-}
-
-getPostgresVersion();
-
 // const pool = new Pool({
-//   user: "postgres",
-//   host: "localhost",
-//   database: "postgres",
-//   password: "1234",
-//   port: 5432,
+//   connectionString: process.env.DATABASE_URL,
 // });
+
+// async function getPostgresVersion() {
+//   const client = await pool.connect();
+//   try {
+//     const response = await client.query("SELECT version()");
+//     console.log(response.rows[0]);
+//   } finally {
+//     client.release();
+//   }
+// }
+
+// getPostgresVersion();
+
+const pool = new Pool({
+  user: "postgres",
+  host: "localhost",
+  database: "postgres",
+  password: "1234",
+  port: 5432,
+});
 
 // Store refresh tokens securely (e.g., in a database)
 const refreshTokens = {};
